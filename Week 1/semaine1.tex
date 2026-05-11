@@ -1,0 +1,272 @@
+\documentclass[a4paper,11pt]{article}
+
+\usepackage[french]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{geometry}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{colortbl}
+\usepackage{array}
+\usepackage{mdframed}
+\usepackage{fontawesome5}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins, breakable}
+
+\geometry{top=2cm, bottom=2cm, left=2.2cm, right=2.2cm}
+
+% Couleurs
+\definecolor{jepaBlue}{RGB}{25, 75, 155}
+\definecolor{lightBlue}{RGB}{235, 243, 255}
+\definecolor{accentOrange}{RGB}{220, 100, 20}
+\definecolor{darkGray}{RGB}{55, 55, 55}
+\definecolor{lightGray}{RGB}{245, 245, 245}
+\definecolor{successGreen}{RGB}{30, 140, 70}
+\definecolor{rowAlt}{RGB}{248, 250, 255}
+
+\hypersetup{colorlinks=true, urlcolor=jepaBlue, linkcolor=jepaBlue}
+
+% En-tête / pied de page
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\textcolor{darkGray}{\small Projet JEPA — Stage SNU Deep Learning Lab}}
+\rhead{\textcolor{darkGray}{\small Prof. Tae-wan Kim}}
+\lfoot{\textcolor{darkGray}{\small Hugo Planchat · 1A CentraleSupélec}}
+\rfoot{\textcolor{darkGray}{\small Page \thepage}}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+% Titres de section
+\titleformat{\section}{\large\bfseries\color{jepaBlue}}{}{0em}{}[\titlerule]
+\titleformat{\subsection}{\normalsize\bfseries\color{accentOrange}}{}{0em}{}
+
+% Box jour
+\tcbset{
+  daybox/.style={
+    enhanced,
+    colback=lightBlue,
+    colframe=jepaBlue,
+    fonttitle=\bfseries\color{white},
+    coltitle=white,
+    colbacktitle=jepaBlue,
+    attach boxed title to top left={yshift=-2mm, xshift=4mm},
+    boxed title style={sharp corners},
+    sharp corners,
+    breakable,
+    left=4pt, right=4pt, top=10pt, bottom=4pt,
+  },
+  delivbox/.style={
+    enhanced,
+    colback=lightGray,
+    colframe=successGreen,
+    fonttitle=\bfseries\color{white},
+    coltitle=white,
+    colbacktitle=successGreen,
+    attach boxed title to top left={yshift=-2mm, xshift=4mm},
+    boxed title style={sharp corners},
+    sharp corners,
+    left=4pt, right=4pt, top=10pt, bottom=4pt,
+  }
+}
+
+\begin{document}
+
+% ─── PAGE DE TITRE ───────────────────────────────────────────────────────────
+\thispagestyle{empty}
+\begin{center}
+  \vspace*{1cm}
+  {\Huge\bfseries\color{jepaBlue} JEPA}\\[0.3cm]
+  {\Large\bfseries\color{darkGray} Semaine 1 — Plan de travail}\\[0.5cm]
+  \textcolor{accentOrange}{\rule{8cm}{1.5pt}}\\[0.5cm]
+  {\large\itshape Vision LeCun + Fondations mathématiques du Deep Learning}\\[1cm]
+  \begin{tabular}{rl}
+    \textbf{Stage :} & SNU Deep Learning Lab (\texttt{dllab.snu.ac.kr}) \\[4pt]
+    \textbf{Encadrant :} & Prof. Tae-wan Kim \\[4pt]
+    \textbf{Étudiant :} & Hugo Planchat, 1A CentraleSupélec \\[4pt]
+    \textbf{Durée semaine :} & 35 heures · 5 jours · 7h/jour \\[4pt]
+    \textbf{Objectif :} & Comprendre \textit{pourquoi} JEPA existe \\
+  \end{tabular}
+
+  \vspace{1.5cm}
+  \begin{tcolorbox}[colback=lightBlue, colframe=jepaBlue, width=13cm, sharp corners]
+    \centering
+    \textbf{\color{jepaBlue} Philosophie de la semaine}\\[4pt]
+    \textit{« Lire un papier JEPA sans avoir intégré DINO, BYOL, MAE = hocher la tête sans rien capter. »}\\[4pt]
+    Cette semaine pose les fondations \textbf{conceptuelles} (world models, énergie, hiérarchies)\\
+    et les fondations \textbf{techniques} (PyTorch, MLP from scratch, attention).\\[4pt]
+    \textbf{Règle d'or :} code dès le premier jour. Lire sans coder = oublier en 3 jours.
+  \end{tcolorbox}
+\end{center}
+
+\newpage
+
+% ─── VUE D'ENSEMBLE ──────────────────────────────────────────────────────────
+\section{Vue d'ensemble — 35h réparties sur 5 jours}
+
+\vspace{0.3cm}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabularx}{\textwidth}{>{\bfseries\color{jepaBlue}}l >{\itshape}X >{\centering\arraybackslash}p{1.5cm} >{\centering\arraybackslash}p{2.5cm}}
+  \toprule
+  \rowcolor{jepaBlue!15}
+  \textbf{Jour} & \textbf{Thème} & \textbf{Heures} & \textbf{Répartition} \\
+  \midrule
+  Lundi    & Manifeste LeCun 2022 — lectures 1 et 2 + talk YouTube       & 7h & 70\% lecture, 30\% notes \\
+  \rowcolor{rowAlt}
+  Mardi    & Energy-Based Learning (2006) + blog Rohit Bandaru           & 7h & 60\% lecture, 40\% notes \\
+  Mercredi & PyTorch — bases officielles + MLP from scratch              & 7h & 20\% lecture, 80\% code  \\
+  \rowcolor{rowAlt}
+  Jeudi    & Mécanisme d'attention — théorie + code from scratch         & 7h & 30\% lecture, 70\% code  \\
+  Vendredi & Synthèse, finalisation notebook, journal de bord            & 7h & 20\% code, 80\% rédaction\\
+  \midrule
+  \rowcolor{jepaBlue!10}
+  \textbf{Total} & & \textbf{35h} & \\
+  \bottomrule
+\end{tabularx}
+
+\vspace{0.8cm}
+
+% ─── JOUR 1 ──────────────────────────────────────────────────────────────────
+\begin{tcolorbox}[daybox, title={Lundi — Manifeste LeCun (7h)}]
+\renewcommand{\arraystretch}{1.4}
+\begin{tabularx}{\textwidth}{>{\bfseries\color{jepaBlue}}p{2.2cm} X}
+  9h00–11h00  & \textbf{1\textsuperscript{ère} lecture} de \textit{A Path Towards Autonomous Machine Intelligence} (LeCun, 2022, 65 pages). Lecture rapide, vue d'ensemble. Repérer les concepts clés sans bloquer. \\
+  11h00–13h00 & \textbf{Talk YouTube LeCun} au choix : NeurIPS 2022 keynote \textit{ou} Collège de France 2020. Prendre des notes au fil du visionnage. \\
+  \textit{Pause déjeuner} & \\
+  14h00–16h00 & \textbf{2\textsuperscript{ème} lecture annotée} du manifeste — cette fois crayon en main. Annoter les passages sur System 1/2, world models, JEPA, hiérarchies. \\
+  16h00–17h00 & Rédaction des \textbf{premières notes structurées} : définir en tes propres mots System 1/2, world model, énergie, prédiction en espace latent. \\
+\end{tabularx}
+
+\vspace{0.3cm}
+\textbf{\color{successGreen} Livrable du jour :} Fiche de notes 1–2 pages (Markdown ou papier) sur : System 1 vs System 2, qu'est-ce qu'un world model, pourquoi prédire en espace latent plutôt en espace pixel.
+\end{tcolorbox}
+
+\vspace{0.5cm}
+
+% ─── JOUR 2 ──────────────────────────────────────────────────────────────────
+\begin{tcolorbox}[daybox, title={Mardi — Energy-Based Learning + Blog (7h)}]
+\renewcommand{\arraystretch}{1.4}
+\begin{tabularx}{\textwidth}{>{\bfseries\color{jepaBlue}}p{2.2cm} X}
+  9h00–12h00  & \textbf{LeCun, \textit{A Tutorial on Energy-Based Learning} (2006)}, sections 1–4 uniquement. Objectif : comprendre ce qu'est une fonction d'énergie, pourquoi on minimise l'énergie, et comment ça relie à la prédiction. Ne pas hésiter à relire les passages difficiles. \\
+  12h00–13h00 & \textbf{Pause / consolidation} : résumer en 5 lignes ce que tu viens de lire. \\
+  \textit{Pause déjeuner} & \\
+  14h00–16h00 & \textbf{Blog \textit{``Deep Dive into Yann LeCun's JEPA''}} de Rohit Bandaru (Medium). Meilleure intro vulgarisée à I-JEPA. Lire lentement, relier au manifeste d'hier. \\
+  16h00–17h00 & \textbf{Notes structurées} : qu'est-ce que l'énergie en DL, comment JEPA s'y relie, hiérarchies de prédiction. Compléter la fiche de lundi. \\
+\end{tabularx}
+
+\vspace{0.3cm}
+\textbf{\color{successGreen} Livrable du jour :} Fiche \textit{``Énergie \& JEPA''} — définition d'une EBM, lien avec la prédiction en latent space, en quoi JEPA est une EBM implicite.
+\end{tcolorbox}
+
+\vspace{0.5cm}
+
+% ─── JOUR 3 ──────────────────────────────────────────────────────────────────
+\begin{tcolorbox}[daybox, title={Mercredi — PyTorch : bases + MLP from scratch (7h)}]
+\renewcommand{\arraystretch}{1.4}
+\begin{tabularx}{\textwidth}{>{\bfseries\color{jepaBlue}}p{2.2cm} X}
+  9h00–10h00  & \textbf{PyTorch 60-Minute Blitz} (tutoriel officiel). Tenseurs, autograd, loop d'entraînement. \\
+  10h00–12h00 & \textbf{PyTorch Learn the Basics} (tutoriel officiel, 5 premières sections). Dataset, DataLoader, model, loss, optimizer. \\
+  \textit{Pause déjeuner} & \\
+  13h00–17h00 & \textbf{Coder un MLP from scratch} (4h) : sans utiliser \texttt{nn.Linear} dans la couche, tout à la main avec des tenseurs. Architecture : 2 couches cachées, ReLU, cross-entropy. Entraîner sur MNIST ou CIFAR-10. Observer les courbes de loss. \\
+\end{tabularx}
+
+\vspace{0.3cm}
+\textbf{\color{successGreen} Livrable du jour :} Notebook \texttt{mlp\_scratch.ipynb} — MLP qui tourne, courbes loss/accuracy, commentaires expliquant chaque étape.
+\end{tcolorbox}
+
+\vspace{0.5cm}
+
+% ─── JOUR 4 ──────────────────────────────────────────────────────────────────
+\begin{tcolorbox}[daybox, title={Jeudi — Mécanisme d'attention from scratch (7h)}]
+\renewcommand{\arraystretch}{1.4}
+\begin{tabularx}{\textwidth}{>{\bfseries\color{jepaBlue}}p{2.2cm} X}
+  9h00–11h00  & \textbf{Lire \textit{The Illustrated Transformer}} (Jay Alammar, blog). La référence pour comprendre l'attention visuellement. Dessiner le schéma Q/K/V à la main. \\
+  11h00–12h00 & Lire les équations d'attention dans \textit{Attention is All You Need} (Vaswani et al., 2017), section 3. Juste les équations de base, pas l'architecture encoder-decoder complète. \\
+  \textit{Pause déjeuner} & \\
+  13h00–17h00 & \textbf{Coder une tête d'attention from scratch} (4h) : implémenter Scaled Dot-Product Attention en PyTorch pur (\texttt{torch.matmul}, \texttt{torch.softmax}). Tester avec des tenseurs bidons. Puis coder une couche Multi-Head Attention. Vérifier que les dimensions sont cohérentes. \\
+\end{tabularx}
+
+\vspace{0.3cm}
+\textbf{\color{successGreen} Livrable du jour :} Notebook \texttt{attention\_scratch.ipynb} — implémentation fonctionnelle de Scaled Dot-Product Attention + Multi-Head Attention, avec vérification des shapes.
+\end{tcolorbox}
+
+\vspace{0.5cm}
+
+% ─── JOUR 5 ──────────────────────────────────────────────────────────────────
+\begin{tcolorbox}[daybox, title={Vendredi — Synthèse \& Livrables finaux (7h)}]
+\renewcommand{\arraystretch}{1.4}
+\begin{tabularx}{\textwidth}{>{\bfseries\color{jepaBlue}}p{2.2cm} X}
+  9h00–12h00  & \textbf{Rédaction des notes finales de la semaine} (3h) : document structuré couvrant tous les concepts (System 1/2, world models, EBM, hiérarchies de prédiction, attention). Format Markdown sur GitHub ou Notion. Ce document doit être compréhensible par quelqu'un qui n'a pas lu les papiers. \\
+  12h00–13h00 & \textbf{Finaliser et documenter les notebooks} : nettoyer le code, ajouter des cellules de texte (Markdown) qui expliquent chaque partie, vérifier que tout tourne de zéro. \\
+  \textit{Pause déjeuner} & \\
+  14h00–16h00 & \textbf{Journal de bord — Semaine 1} : rédiger le journal hebdo. Format suggéré : (1) ce que j'ai lu/fait, (2) les 3 choses que j'ai vraiment comprises, (3) les 2 choses qui me bloquent encore, (4) mes questions pour le Pr. Kim ou son doctorant, (5) mes idées/intuitions. \\
+  16h00–17h00 & \textbf{Préparation semaine 2} : parcourir les 4 papiers de la semaine 2 (ViT, MAE…), noter les pré-requis manquants. \\
+\end{tabularx}
+
+\vspace{0.3cm}
+\textbf{\color{successGreen} Livrables finaux :} Notes structurées complètes + \texttt{mlp\_scratch.ipynb} + \texttt{attention\_scratch.ipynb} + Journal de bord S1.
+\end{tcolorbox}
+
+\newpage
+
+% ─── RÉCAP LIVRABLES ─────────────────────────────────────────────────────────
+\section{Récapitulatif des livrables de la semaine}
+
+\begin{tcolorbox}[delivbox, title={Ce que tu dois produire d'ici vendredi soir}]
+\begin{enumerate}[leftmargin=1cm, itemsep=6pt]
+  \item \textbf{Notes conceptuelles} — document Markdown couvrant : System 1/2, world models, énergie, hiérarchies de prédiction, lien avec JEPA. (Lundi–Mardi)
+  \item \textbf{\texttt{mlp\_scratch.ipynb}} — MLP entraîné sur MNIST/CIFAR-10, implémenté sans \texttt{nn.Linear}, avec courbes loss/accuracy. (Mercredi)
+  \item \textbf{\texttt{attention\_scratch.ipynb}} — Scaled Dot-Product Attention + Multi-Head Attention from scratch en PyTorch. (Jeudi)
+  \item \textbf{Journal de bord S1} — fichier Markdown avec les 5 rubriques (lu/fait, compris, bloqué, questions, intuitions). (Vendredi)
+\end{enumerate}
+\end{tcolorbox}
+
+\vspace{0.8cm}
+
+% ─── CONCEPTS CLÉS ───────────────────────────────────────────────────────────
+\section{Concepts clés à maîtriser en fin de semaine}
+
+\renewcommand{\arraystretch}{1.4}
+\begin{tabularx}{\textwidth}{>{\bfseries}p{4.5cm} X}
+  \toprule
+  \rowcolor{jepaBlue!15}
+  \textbf{Concept} & \textbf{Ce que tu dois pouvoir expliquer} \\
+  \midrule
+  System 1 / System 2 & Dual-process theory de Kahneman, et comment LeCun s'en inspire \\
+  \rowcolor{rowAlt}
+  World Model & Définition, pourquoi c'est nécessaire pour un agent autonome \\
+  Énergie (EBM) & Ce qu'une fonction d'énergie capture, comment on l'entraîne \\
+  \rowcolor{rowAlt}
+  Prédiction en latent space & Pourquoi prédire des embeddings plutôt que des pixels \\
+  Hiérarchie de prédiction & Comment JEPA prédit à plusieurs niveaux d'abstraction \\
+  \rowcolor{rowAlt}
+  Attention (Q/K/V) & Les équations, la sémantique de chaque terme, le rôle du softmax \\
+  Autograd PyTorch & Comment le graphe de calcul est construit et comment backprop fonctionne \\
+  \bottomrule
+\end{tabularx}
+
+\vspace{0.8cm}
+
+% ─── RESSOURCES ──────────────────────────────────────────────────────────────
+\section{Ressources \& liens (voir aussi \texttt{liens.md})}
+
+\begin{itemize}[itemsep=4pt]
+  \item \textbf{LeCun 2022 :} \href{https://arxiv.org/abs/2206.04695}{\texttt{arxiv.org/abs/2206.04695}}
+  \item \textbf{LeCun EBL 2006 :} \href{http://yann.lecun.com/exdb/publis/pdf/lecun-06.pdf}{\texttt{yann.lecun.com/.../lecun-06.pdf}}
+  \item \textbf{Blog Rohit Bandaru :} chercher \textit{``Deep Dive into Yann LeCun's JEPA''} sur Medium
+  \item \textbf{The Illustrated Transformer :} \href{https://jalammar.github.io/illustrated-transformer/}{\texttt{jalammar.github.io/illustrated-transformer}}
+  \item \textbf{Attention is All You Need :} \href{https://arxiv.org/abs/1706.03762}{\texttt{arxiv.org/abs/1706.03762}}
+  \item \textbf{PyTorch 60min Blitz :} \href{https://pytorch.org/tutorials/beginner/deep_learning_60min_blitz.html}{\texttt{pytorch.org/tutorials/beginner/...}}
+  \item \textbf{PyTorch Learn the Basics :} \href{https://pytorch.org/tutorials/beginner/basics/intro.html}{\texttt{pytorch.org/tutorials/beginner/basics}}
+\end{itemize}
+
+\vspace{0.5cm}
+\begin{tcolorbox}[colback=accentOrange!10, colframe=accentOrange, sharp corners]
+  \textbf{\color{accentOrange} Rappel :} tiens ton journal de bord au fil de l'eau — une note après chaque session de 2h, pas tout vendredi soir. La valeur est dans la granularité.
+\end{tcolorbox}
+
+\end{document}
