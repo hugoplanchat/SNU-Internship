@@ -1,16 +1,16 @@
-# Local only — not in repo
-plan_recherche_JEPA_3mois_SNU.md
-Week 1/
+# Local planning files — not in repo
+PLANNING/
+
+# Obsidian workspace (local state only)
+Lecture Notes/.obsidian/workspace.json
+Lecture Notes/.obsidian/workspace-mobile.json
+Lecture Notes/.obsidian/graph.json
 
 # LaTeX artefacts
 *.aux
 *.log
 *.out
 *.synctex.gz
-
-# Obsidian workspace (local only)
-JEPA notes/.obsidian/workspace.json
-JEPA notes/.obsidian/workspace-mobile.json
 
 # Datasets et checkpoints
 data/
