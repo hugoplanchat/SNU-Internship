@@ -136,7 +136,7 @@ Training the world model is a prototypical example of SSL
 
 Training World Model - predicting future representations of the state of the world
 
-EBM : Energy-Based Models 
+EBM : Energy-Based Models [[Notes A Tutorial on Energy-Based Learning]]
 
 The system is a scalar-valued function F (x, y) that produces low energy values when x and
 y are compatible and higher values when they are not.
@@ -305,4 +305,122 @@ This directly addresses one of the three core challenges LeCun identifies:
 ## HIERARCHICAL PLANNING 
 
 ![[Pasted image 20260511102410.png]]
+
+Representations at multiple **levels of abstractions** by a cascade of encoders:
+$$
+s[0]=\text{Enc1}(x); \quad s2[0]=\text{Enc2}(s[0]);...
+$$
+**Level 2 (high)** — plans over long horizons, infers abstract "actions" $a2[2], a2[4]$ which are not real actions but **subgoals** (target states for level 1)
+
+**Level 1 (low)** — takes those subgoals as cost targets $C(s[2]), C(s[4])$ and finds real low-level actions $a[0], a[1], \dots$ to achieve them
+
+The process is sequential top-down, but ideally all levels are optimized **jointly**.
+
+## HANDLING UNCERTAINTY 
+
+![[Pasted image 20260512034339.png]]
+
+
+Even with a perfect world model, predictions are uncertain for 5 reasons:
+
+- **Aleatoric type 1** — the world is intrinsically stochastic (random events)
+- **Aleatoric type 2** — the world is deterministic but chaotic (turbulence, weather)
+- **Aleatoric type 3** — the world is partially observable
+- **Epistemic type 1** — sensors give only partial information about the true state
+- **Epistemic type 2/3/4** — the world model itself is imperfect (limited data, compute, capacity)
+
+> **Aleatoric** = uncertainty in the world (irreducible)
+> **Epistemic** = uncertainty in the model (reducible with more data/compute)
+
+**Solution — latent variables + sampling** 
+
+At each step, sample multiple values of $z$ to generate multiple plausible futures:
+$$s[t+1] = \text{Pred}(s[t], a[t], z[t])$$
+
+Problem: with $k$ discrete values of $z$ and $t$ steps → $k^t$ trajectories (exponential explosion).
+Fix: directed search and pruning (e.g. Monte-Carlo Tree Search).
+
+**Key insight:**
+> Uncertainty is not in the model outputs — it lives entirely in $z$.
+> The world model stays deterministic. All stochasticity is pushed into the latent variable.
+
+##  Keeping Track of the State of the World
+
+The world state should not be communicated as a full vector at each step,most of the world changes only slightly between two timesteps.
+Instead, the world state is stored in a **writable associative memory** where only the affected parts are updated at each step.
+
+**Key-Value Memory**
+
+The memory stores pairs $(k_j, v_j)$ : key and value for each entry. Given a query $q$ (the current state), retrieval works in 3 steps:
+
+$$\tilde{c}_j = \text{Match}(k_j, q) \tag{16}$$
+$$c = \text{Normalize}(\tilde{c}) \tag{17}$$
+$$\text{Mem}(q) = \sum_j c_j v_j \tag{15}$$
+
+1. **Match** — compute similarity between query $q$ and each key $k_j$
+2. **Normalize** — turn raw scores into weights that sum to 1
+3. **Retrieve** — return a weighted sum of the stored values
+
+**Writing** to memory updates existing entries:
+$$v_j \leftarrow \text{Update}(r, v_j, c_j) = c_j r + (1 - c_j) v_j$$
+
+where $r$ is the new value to write.
+
+> This is the same mechanism as **attention** in Transformers (Q, K, V).
+> It allows one-shot learning and smooth interpolation between stored states.
+
+## Data Streams
+
+How should an agent collect data to train its world model?
+
+1. **Passive observation** — receives a sensor stream (video, audio…), no control over what it sees
+2. **Active foveation** — can orient its sensors without affecting the environment (moving eyes/head)
+3. **Passive agency** — watches another agent acting, learns causal effects without acting itself
+4. **Active egomotion** — moves its sensors in the environment without significantly affecting the world
+5. **Active agency** — acts on the environment and observes consequences → enables causal models,
+   but introduces the **exploration-exploitation dilemma**
+
+> **Open question:** how much can be learned from passive observation (modes 1, 2, 4),
+> and how much requires active agency (mode 5)?
+
+## DESINGING AND TRAINING THE ACTOR 
+
+
+The actor has **3 roles**:
+1. Infer optimal action sequences minimizing the cost (Mode-2)
+2. Explore configurations of latent variables $z$ to plan under uncertainty
+3. Train policy networks for Mode-1 reactive behavior
+
+**Key insight:** there is no conceptual difference between an action $a$ and a latent
+variable $z$ — both are variables the actor must explore to find good configurations.
+
+**When the world model is well-behaved** → gradient-based optimization:
+$$\min_{a[0],\dots,a[T]} \sum_{t=1}^{T} C(s[t])$$
+
+**When not well-behaved** (discrete actions, discontinuities) → use:
+- Dynamic programming
+- Beam search
+- Monte-Carlo Tree Search (MCTS)
+
+**After optimization** → train a policy network $A(s[t])$ to imitate the optimal
+sequence (Mode-2 → Mode-1 distillation, same as Section 3.1.3).
+The policy can then act directly in Mode-1 or warm-start the next Mode-2 optimization.
+
+## DESIGNING THE CONFIGURATOR 
+
+The configurator is the main controller of the architecture : it takes input from all modules and modulates their parameters and connection graphs to configure the agent for the task at hand.
+
+**2 reasons it exists:**
+
+- **Hardware reuse** — one generic world model for all tasks, configured on the fly
+- **Knowledge sharing** — knowledge from one task transfers to another with minor changes
+
+Downside: the agent can only **focus on one task at a time**.
+
+**How it configures each module:**
+
+- **Perception** — primes it to extract task-relevant features
+- **Predictor (low-level)** — configures local feature routing for short-term predictions
+- **Predictor (high-level)** — adds tokens to Transformer blocks to modulate attention
+- **Cost module** — sets subgoals by modulating weights $u_i, v_j$ of cost sub-modules
 

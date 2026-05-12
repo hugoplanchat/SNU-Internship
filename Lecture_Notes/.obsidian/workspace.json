@@ -1,0 +1,234 @@
+{
+  "main": {
+    "id": "34c14831aaeda73a",
+    "type": "split",
+    "children": [
+      {
+        "id": "51bd9dbeb94cf732",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "1263759fd6a618e2",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "LeCun EBL/Notes A Tutorial on Energy-Based Learning.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Notes A Tutorial on Energy-Based Learning"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "a65cf7598f7620e7",
+    "type": "split",
+    "children": [
+      {
+        "id": "0f52d9b7995a33aa",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "ba78f507c74b8713",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "cf68178f95bed8a3",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "51ede8a61043827c",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "76dbdc1e11fc30b4",
+    "type": "split",
+    "children": [
+      {
+        "id": "3ccc9260a1026aa2",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "54878a3f4c4fbb17",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks"
+            }
+          },
+          {
+            "id": "d864cce45b36e20d",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links"
+            }
+          },
+          {
+            "id": "79a815ea627da981",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "9c042539b3c3c5da",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "All properties"
+            }
+          },
+          {
+            "id": "68d7632888ebcaaf",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false
+    }
+  },
+  "floating": {
+    "id": "1f5fc8d9cbfc88b9",
+    "type": "floating",
+    "children": [
+      {
+        "id": "2824c573d729e96b",
+        "type": "window",
+        "children": [
+          {
+            "id": "114af904ecb6f300",
+            "type": "tabs",
+            "children": [
+              {
+                "id": "b6b0bdca32a9763d",
+                "type": "leaf",
+                "state": {
+                  "type": "pdf",
+                  "state": {
+                    "file": "LeCun EBL/LeCun EBL.pdf"
+                  },
+                  "icon": "lucide-file-text",
+                  "title": "LeCun EBL"
+                }
+              }
+            ]
+          }
+        ],
+        "direction": "vertical",
+        "x": -803,
+        "y": 257,
+        "width": 606,
+        "height": 602,
+        "maximize": true,
+        "zoom": 0
+      }
+    ]
+  },
+  "active": "1263759fd6a618e2",
+  "lastOpenFiles": [
+    "LeCun EBL/LeCun EBL.pdf",
+    "LeCun EBL/Notes A Tutorial on Energy-Based Learning.md",
+    "LeCun-2022-A-Path-Towards-Autonomous-Machine-Intelligence/Notes A Path Towards Autonomous Machine Intelligence  Version - Hugo PLANCHAT.md",
+    "LeCun-2022-A-Path-Towards-Autonomous-Machine-Intelligence/A Path Towards Autonomous Machine Intelligence Yan LeCun-2.pdf",
+    "Notes.md",
+    "LeCun-2022-A-Path-Towards-Autonomous-Machine-Intelligence/Pasted image 20260511102410.png",
+    "LeCun-2022-A-Path-Towards-Autonomous-Machine-Intelligence/Pasted image 20260512034339.png",
+    "Pasted image 20260512034339.png",
+    "LeCun EBL",
+    "Nouveau dossier",
+    "LeCun EBL.pdf"
+  ]
+}

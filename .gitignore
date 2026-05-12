@@ -12,6 +12,9 @@ Lecture Notes/.obsidian/graph.json
 *.out
 *.synctex.gz
 
+# Deep learning work (not ready yet)
+deep_learning/
+
 # Datasets et checkpoints
 data/
 *.pth
