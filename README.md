@@ -1,3 +1,2 @@
-# JEPA — SNU Internship 2026
+# JEPA : SNU Internship 2026 Deep Learning Lab 
 
-Research internship at SNU Deep Learning Lab (Prof. Tae-wan Kim) on JEPA architectures applied to naval engineering.
