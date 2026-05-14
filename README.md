@@ -1,2 +1,2 @@
-# JEPA : SNU Internship 2026 Deep Learning Lab 
+# JEPA : Internship at Deep Learning Lab. , Seoul National University on Joint-Embedding Predictive Architecture 
 
