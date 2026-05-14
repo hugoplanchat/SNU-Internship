@@ -17,6 +17,7 @@ perso/
 
 # Literature PDFs (public papers — keep notes only)
 literature/*.pdf
+Lecture_Notes/**/*.pdf
 
 # Datasets et checkpoints
 data/
