@@ -15,9 +15,6 @@ perso/
 *.out
 *.synctex.gz
 
-# Deep learning work (not ready yet)
-deep_learning/
-
 # Literature PDFs (public papers — keep notes only)
 literature/*.pdf
 
