@@ -1,10 +1,13 @@
 # Local planning files — not in repo
 PLANNING/
 
+# Personal files — local only
+perso/
+
 # Obsidian workspace (local state only)
-Lecture Notes/.obsidian/workspace.json
-Lecture Notes/.obsidian/workspace-mobile.json
-Lecture Notes/.obsidian/graph.json
+**/.obsidian/workspace.json
+**/.obsidian/workspace-mobile.json
+**/.obsidian/graph.json
 
 # LaTeX artefacts
 *.aux
@@ -15,8 +18,12 @@ Lecture Notes/.obsidian/graph.json
 # Deep learning work (not ready yet)
 deep_learning/
 
+# Literature PDFs (public papers — keep notes only)
+literature/*.pdf
+
 # Datasets et checkpoints
 data/
+*.pt
 *.pth
 *.ckpt
 *.safetensors
