@@ -30,6 +30,32 @@ Foundational reference on Energy-Based Models (EBMs). Defines energy functions, 
 
 ---
 
+## Architectures
+
+### Vaswani et al., 2017 — Attention is All You Need
+**Authors:** Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones, Aidan N. Gomez, Łukasz Kaiser, Illia Polosukhin
+**Year:** 2017
+**Venue:** NeurIPS
+**Link:** https://arxiv.org/abs/1706.03762
+
+The Transformer paper. Introduces scaled dot-product attention, multi-head attention, and sinusoidal positional encoding. Removes recurrence entirely, enabling parallel training. Foundation of every modern LLM and ViT-based model.
+
+📝 Notes: `Lecture_Notes/Attention is all you need/`
+
+---
+
+### Dosovitskiy et al., 2021 — An Image is Worth 16x16 Words (ViT)
+**Authors:** Alexey Dosovitskiy et al.
+**Year:** 2021
+**Venue:** ICLR
+**Link:** https://arxiv.org/abs/2010.11929
+
+Applies the Transformer architecture directly to images by splitting them into fixed-size patches treated as tokens. Shows that pure attention without convolution outperforms CNNs when pretrained at scale. The ViT encoder is the backbone of I-JEPA.
+
+📝 Notes: (to be written)
+
+---
+
 ## Applications
 
 ### Mine-JEPA — In-Domain Self-Supervised Learning for Side-Scan Sonar
