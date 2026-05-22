@@ -7,11 +7,6 @@ torch.manual_seed(42)
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
 print(f"device = {device}")
 
-
-# 1. Scaled Dot-Product Attention
-# PyTorch provides F.scaled_dot_product_attention since 2.0
-# Signature : F.scaled_dot_product_attention(Q, K, V, attn_mask=None)
-
 B = 128
 T = 10
 d_k = 16
@@ -23,12 +18,9 @@ V = torch.randn(B, T, d_v)
 
 output = F.scaled_dot_product_attention(Q, K, V)
 print(f"\nScaled dot-product attention :")
-print(f"  output shape : {output.shape}")   # (128, 10, 16)
+print(f"  output shape : {output.shape}")  
 
 
-# 2. Positional Encoding
-# PyTorch does not provide a built-in sinusoidal PositionalEncoding.
-# Keep the class — same as the notebook.
 
 class PositionalEncoding(nn.Module):
     def __init__(self, d_model, max_len=5000, dropout=0.1):
@@ -56,24 +48,18 @@ pe = PositionalEncoding(d_model, dropout=0.0)
 x = torch.zeros(B, T, d_model)
 out = pe(x)
 print(f"\nPositional encoding :")
-print(f"  output shape : {out.shape}")   # (128, 10, 256)
-
-
-# 3. Multi-Head Attention
-# nn.MultiheadAttention with batch_first=True
+print(f"  output shape : {out.shape}")   
 
 num_heads = 8
 mha = nn.MultiheadAttention(embed_dim=d_model, num_heads=num_heads, bias=False, batch_first=True)
 
 x = torch.randn(B, T, d_model)
-out, attn = mha(x, x, x)   # self-attention : Q = K = V = x
+out, attn = mha(x, x, x)   # self-attention : x_q = x_k = x_v = x
 print(f"\nMulti-head attention :")
 print(f"  output shape : {out.shape}")   # (128, 10, 256)
 print(f"  attn shape   : {attn.shape}")  # (128, 10, 10) averaged over heads by default
 
 
-# 4. Transformer Block
-# nn.TransformerEncoderLayer = MultiHead + Add&Norm + FFN + Add&Norm
 
 d_ff = 4 * d_model
 block = nn.TransformerEncoderLayer(
@@ -88,9 +74,6 @@ y = block(x)
 print(f"\nTransformer block :")
 print(f"  output shape : {y.shape}")   # (128, 10, 256)
 
-
-# 5. Transformer Encoder
-# nn.TransformerEncoder = stack of N TransformerEncoderLayer
 
 num_layers = 6
 encoder = nn.TransformerEncoder(block, num_layers=num_layers)
