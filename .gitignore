@@ -31,6 +31,9 @@ data/
 __pycache__/
 *.pyc
 
+# Presentations
+presentation/
+
 # Environnement
 .venv/
 .env
