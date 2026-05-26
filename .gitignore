@@ -4,10 +4,8 @@ PLANNING/
 # Personal files — local only
 perso/
 
-# Obsidian workspace (local state only)
-**/.obsidian/workspace.json
-**/.obsidian/workspace-mobile.json
-**/.obsidian/graph.json
+# Obsidian (local state only)
+**/.obsidian/
 
 # LaTeX artefacts
 *.aux
