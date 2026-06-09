@@ -1,8 +1,8 @@
 # Local planning files — not in repo
-PLANNING/
+planning/
 
-# Personal files — local only
-perso/
+# Archived material (old tutorials kept locally only)
+archive/
 
 # Obsidian (local state only)
 **/.obsidian/
@@ -13,12 +13,12 @@ perso/
 *.out
 *.synctex.gz
 
-# Literature PDFs (public papers — keep notes only)
-literature/*.pdf
-Lecture_Notes/**/*.pdf
+# Paper PDFs (public papers — keep notes only)
+papers/*.pdf
+notes/**/*.pdf
 
 # Datasets et checkpoints
-data/
+DATA/
 *.pt
 *.pth
 *.ckpt
